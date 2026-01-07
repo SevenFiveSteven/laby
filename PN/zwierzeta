@@ -4,7 +4,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-// Typ wyliczeniowy z hashami (DJB2)
+// Typ wyliczeniowy z hashami
+
 typedef enum {
     Animal_kot   = 193497299,
     Animal_pies  = 2090616342,
@@ -13,7 +14,8 @@ typedef enum {
     Animal_malpa = 267024912,
 } Animal_t;
 
-// Funkcja hashująca DJB2 z konwersją na małe litery
+// Funkcja hashująca z konwersją na małe litery
+
 uint32_t hash(char *str) {
     uint32_t hash = 5381;
     int c;
@@ -24,9 +26,9 @@ uint32_t hash(char *str) {
     return hash;
 }
 
-/**
- * @brief Zapisuje ciąg znaków do pliku.
- */
+
+// Zapisuje ciąg znaków do pliku
+
 bool file_save_txt(const char *path, char *string) {
     FILE *fp = fopen(path, "w");
     if (fp == NULL)
@@ -37,9 +39,9 @@ bool file_save_txt(const char *path, char *string) {
     return true; 
 }
 
-/**
- * @brief Ładuje zawartość pliku do zaalokowanej pamięci.
- */
+
+// Ładuje zawartość pliku do zaalokowanej pamięci
+
 int file_load_txt(const char *name, char **bytes) {
     FILE *fp = fopen(name, "rb");
     if (fp == NULL) {
@@ -70,7 +72,7 @@ int file_load_txt(const char *name, char **bytes) {
 }
 
 int main(void) {
-    // Przykładowy zapis, aby test zadziałał
+    // Test
     file_save_txt("test.txt", "KOT"); 
 
     char *animal_type = NULL;
@@ -92,7 +94,7 @@ int main(void) {
         default:           printf("Nieznane zwierze (hash: %u)\n", animal_hash); break;
     }
 
-    // Pamiętaj o zwolnieniu pamięci
+    // Zwolnienie pamięci
     free(animal_type);
 
     return 0;
